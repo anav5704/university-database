@@ -144,6 +144,7 @@ INSERT INTO COMPANY (COMPANY_CODE, COMPANY_NAME) VALUES
 -- @block 
 -- Insert Data into QUALIFICATION table
 INSERT INTO QUALIFICATION (QUALIFICATION_CODE, QUALIFICATION_DESCRIPTION) VALUES
+(000, 'None'),
 (201, 'Certificate in Tourism & Hospitality'),
 (202, 'Diploma in Information Technology'),
 (203, 'Bachelor of Business (Accounting)'),
@@ -289,37 +290,37 @@ INSERT INTO ENROLLMENT (SESSION_CODE, CANDIDATE_CODE, ENROLLMENT_DATE, ENROLLMEN
 -- @block 
 -- Insert Data into EDUCATION table
 INSERT INTO EDUCATION (QUALIFICATION_CODE, CANDIDATE_CODE, EDUCATION_EARNED_DATE) VALUES
-(201, 501, '2024-10-30'),
-(202, 502, '2024-11-15'),
-(203, 503, '2024-10-25'),
-(204, 504, '2024-12-01'),
-(205, 505, '2024-11-10'),
-(206, 506, '2024-12-10'),
-(207, 507, '2024-11-01'),
-(208, 508, '2025-01-05'),
-(209, 509, '2024-11-20'),
-(210, 510, '2024-12-15'),
-(211, 511, '2024-10-20'),
-(212, 512, '2024-11-05'),
-(213, 513, '2024-12-01'),
-(214, 514, '2024-11-10'),
-(215, 515, '2024-12-20'),
-(216, 516, '2025-01-10'),
-(217, 517, '2025-02-01'),
-(218, 518, '2025-01-15'),
-(219, 519, '2025-02-10'),
-(220, 520, '2025-01-25');
+(201, 501, '2024-10-30'),  -- Aisha: Has Tourism cert, job requires Tourism - MATCH
+(000, 502, '2024-11-15'),  -- Semi: Has NONE, job requires IT Diploma - MISMATCH (needs education)
+(203, 503, '2024-10-25'),  -- Mere: Has Business Accounting, job requires Business Accounting - MATCH
+(201, 504, '2024-12-01'),  -- Jone: Has Tourism cert, job requires Food Processing - MISMATCH (needs education)
+(205, 505, '2024-11-10'),  -- Sita: Has Agricultural Science, job requires Agricultural Science - MATCH
+(000, 506, '2024-12-10'),  -- Pita: Has NONE, job requires Project Management - MISMATCH (needs education)
+(207, 507, '2024-11-01'),  -- Roshni: Has Commerce Management, job requires Commerce Management - MATCH
+(201, 508, '2025-01-05'),  -- Viliame: Has Tourism cert, job requires Retail Management - MISMATCH (needs education)
+(209, 509, '2024-11-20'),  -- Laisa: Has Brewing Technology, job requires Brewing Technology - MATCH
+(000, 510, '2024-12-15'),  -- Tomasi: Has NONE, job requires Electrical Engineering - MISMATCH (needs education)
+(211, 511, '2024-10-20'),  -- Sofia: Has Marine Operations, job requires Marine Operations - MATCH
+(212, 512, '2024-11-05'),  -- Isikeli: Has Environmental Science, job requires Environmental Science - MATCH
+(201, 513, '2024-12-01'),  -- Ana: Has Tourism cert, job requires Culinary Arts - MISMATCH (needs education)
+(214, 514, '2024-11-10'),  -- Rajesh: Has Beverage Production, job requires Beverage Production - MATCH
+(215, 515, '2024-12-20'),  -- Kelera: Has Traditional Medicine, job requires Traditional Medicine - MATCH
+(216, 516, '2025-01-10'),  -- Josefa: Has Civil Engineering, job requires Civil Engineering - MATCH
+(000, 517, '2025-02-01'),  -- Priya: Has NONE, job requires Construction Management - MISMATCH (needs education)
+(218, 518, '2025-01-15'),  -- Mosese: Has Water Management, job requires Water Management - MATCH
+(201, 519, '2025-02-10'),  -- Amelia: Has Tourism cert, job requires Hotel Management - MISMATCH (needs education)
+(000, 520, '2025-01-25');  -- David: Has NONE, job requires Media Production - MISMATCH (needs education)
 -- @block 
 -- Insert Data into JOB_OPENING table
 INSERT INTO JOB_OPENING (JOB_OPENING_CODE, JOB_OPENING_DESCRIPTION, JOB_OPENING_AVAILABILITY_STATUS, QUALIFICATION_CODE, COMPANY_CODE) VALUES
-(601, 'Guest Services Officer', 'Open', 201, 101),
-(602, 'IT Support Specialist', 'Open', 202, 102),
+(601, 'Guest Services Officer', 'Open', 219, 101),
+(602, 'IT Support Specialist', 'Open', 216, 102),
 (603, 'Junior Accountant', 'Open', 203, 103),
 (604, 'Food Production Assistant', 'Open', 204, 104),
 (605, 'Agricultural Technician', 'Open', 205, 105),
 (606, 'Resort Project Coordinator', 'Open', 206, 106),
 (607, 'Retail Store Manager', 'Open', 207, 107),
-(608, 'Sales Associate', 'Open', 208, 108),
+(608, 'Sales Associate', 'Open', 207, 108),
 (609, 'Brewery Assistant', 'Open', 209, 109),
 (610, 'Electrical Apprentice', 'Open', 210, 110),
 (611, 'Marina Operations Staff', 'Open', 211, 111),
@@ -385,63 +386,49 @@ INSERT INTO JOB_HISTORY (JOB_HISTORY_CODE, PLACEMENT_CODE, CANDIDATE_CODE) VALUE
 -- Query 4
 -- Find candidates who need further education (don't have required qualification for their job)
 SELECT 
-    C.CANDIDATE_CODE,
-    C.CANDIDATE_FNAME,
-    C.CANDIDATE_LNAME,
-    CR.COURSE_DESCRIPTION,
-    S.SESSION_START_DATE,
-    S.SESSION_FEE,
+    CANDIDATE.CANDIDATE_CODE,
+    CANDIDATE.CANDIDATE_FNAME, 
+    CANDIDATE.CANDIDATE_LNAME, 
+    COURSE.COURSE_DESCRIPTION,
+    SESSION.SESSION_START_DATE,
+    SESSION.SESSION_FEE,
     (
-        SELECT SUM(S2.SESSION_FEE)
-        FROM PLACEMENT AS P2
-        JOIN JOB_OPENING AS J2 ON P2.JOB_OPENING_CODE = J2.JOB_OPENING_CODE
-        JOIN PREREQUISITE AS PR2 ON J2.QUALIFICATION_CODE = PR2.QUALIFICATION_CODE
-        JOIN COURSE AS CR2 ON PR2.COURSE_CODE = CR2.COURSE_CODE
-        JOIN SESSION AS S2 ON CR2.COURSE_CODE = S2.COURSE_CODE
-        LEFT JOIN EDUCATION AS E2 
-            ON E2.CANDIDATE_CODE = P2.CANDIDATE_CODE 
-            AND E2.QUALIFICATION_CODE = J2.QUALIFICATION_CODE
-        WHERE E2.CANDIDATE_CODE IS NULL
-          AND P2.CANDIDATE_CODE = C.CANDIDATE_CODE
-    ) AS TOTAL_COST
-FROM PLACEMENT AS P
-JOIN CANDIDATE AS C ON P.CANDIDATE_CODE = C.CANDIDATE_CODE
-JOIN JOB_OPENING AS J ON P.JOB_OPENING_CODE = J.JOB_OPENING_CODE
-JOIN PREREQUISITE AS PR ON J.QUALIFICATION_CODE = PR.QUALIFICATION_CODE
-JOIN COURSE AS CR ON PR.COURSE_CODE = CR.COURSE_CODE
-JOIN SESSION AS S ON CR.COURSE_CODE = S.COURSE_CODE
-LEFT JOIN EDUCATION AS E 
-    ON E.CANDIDATE_CODE = C.CANDIDATE_CODE 
-    AND E.QUALIFICATION_CODE = J.QUALIFICATION_CODE
-WHERE E.CANDIDATE_CODE IS NULL
-ORDER BY C.CANDIDATE_LNAME ASC, C.CANDIDATE_FNAME ASC;
-
+        SELECT SUM(SESSION.SESSION_FEE)
+        FROM SESSION
+        INNER JOIN COURSE ON SESSION.COURSE_CODE = COURSE.COURSE_CODE
+        WHERE COURSE.QUALIFICATION_CODE = JOB_OPENING.QUALIFICATION_CODE
+    ) AS Total_Cost
+FROM CANDIDATE
+INNER JOIN PLACEMENT ON CANDIDATE.CANDIDATE_CODE = PLACEMENT.CANDIDATE_CODE
+INNER JOIN JOB_OPENING ON PLACEMENT.JOB_OPENING_CODE = JOB_OPENING.JOB_OPENING_CODE
+INNER JOIN EDUCATION ON CANDIDATE.CANDIDATE_CODE = EDUCATION.CANDIDATE_CODE
+INNER JOIN COURSE ON JOB_OPENING.QUALIFICATION_CODE = COURSE.QUALIFICATION_CODE
+INNER JOIN SESSION ON COURSE.COURSE_CODE = SESSION.COURSE_CODE
+WHERE EDUCATION.QUALIFICATION_CODE != JOB_OPENING.QUALIFICATION_CODE
+ORDER BY CANDIDATE.CANDIDATE_LNAME ASC;
 
 -- @block
 -- Query 5
 -- Find candidates who have enrolled in sessions but haven't paid the full fee
-SELECT 
+SELECT
     C.CANDIDATE_CODE,
     C.CANDIDATE_FNAME,
     C.CANDIDATE_LNAME,
     S.SESSION_CODE,
-    S.SESSION_START_DATE,
     S.SESSION_FEE,
     E.ENROLLMENT_FEE_PAYMENT,
-    (S.SESSION_FEE - E.ENROLLMENT_FEE_PAYMENT) AS BALANCE,
+    (S.SESSION_FEE - E.ENROLLMENT_FEE_PAYMENT) AS BALANCE_DUE,
     E.ENROLLMENT_DATE
-FROM CANDIDATE AS C
-INNER JOIN ENROLLMENT AS E ON C.CANDIDATE_CODE = E.CANDIDATE_CODE
-INNER JOIN SESSION AS S ON E.SESSION_CODE = S.SESSION_CODE
-WHERE 
-    S.SESSION_START_DATE BETWEEN '2025-01-01' AND '2025-03-31'
-    AND (
-        E.ENROLLMENT_FEE_PAYMENT IS NULL OR
-        E.ENROLLMENT_FEE_PAYMENT < S.SESSION_FEE
-    )
-ORDER BY 
-    C.CANDIDATE_LNAME,
-    C.CANDIDATE_FNAME;
+FROM
+    CANDIDATE AS C -- Add the Candidate table
+INNER JOIN
+    Enrollment AS E ON C.CANDIDATE_CODE = E.CANDIDATE_CODE
+INNER JOIN
+    Session AS S ON E.SESSION_CODE = S.SESSION_CODE
+WHERE
+    E.ENROLLMENT_FEE_PAYMENT < S.SESSION_FEE
+    AND E.ENROLLMENT_DATE >= '2025-01-01'
+    AND E.ENROLLMENT_DATE <= '2025-03-31';
 
 -- @block
 -- Query 6
@@ -465,7 +452,7 @@ GROUP BY
 ORDER BY 
     CO.COMPANY_NAME, 
     JO.JOB_OPENING_DESCRIPTION;
-    
+
 -- @block
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -482,4 +469,3 @@ DROP TABLE IF EXISTS CANDIDATE;
 DROP TABLE IF EXISTS COMPANY;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
