@@ -1,7 +1,7 @@
 -- Vishant Kumar (S11230430) --
 -- Anav Chand (S11221203) --
---  Rohan Nandan (11234883) --
---  Zhixian Chen )S11230686) --
+--  Rohan Nandan (S11234883) --
+--  Zhixian Chen (S11230686) --
 
 -- Insert Data into COMPANY table --
 
