@@ -144,7 +144,6 @@ INSERT INTO COMPANY (COMPANY_CODE, COMPANY_NAME) VALUES
 -- @block 
 -- Insert Data into QUALIFICATION table
 INSERT INTO QUALIFICATION (QUALIFICATION_CODE, QUALIFICATION_DESCRIPTION) VALUES
-(000, 'None'),
 (201, 'Certificate in Tourism & Hospitality'),
 (202, 'Diploma in Information Technology'),
 (203, 'Bachelor of Business (Accounting)'),
@@ -290,26 +289,26 @@ INSERT INTO ENROLLMENT (SESSION_CODE, CANDIDATE_CODE, ENROLLMENT_DATE, ENROLLMEN
 -- @block 
 -- Insert Data into EDUCATION table
 INSERT INTO EDUCATION (QUALIFICATION_CODE, CANDIDATE_CODE, EDUCATION_EARNED_DATE) VALUES
-(201, 501, '2024-10-30'),  -- Aisha: Has Tourism cert, job requires Tourism - MATCH
-(000, 502, '2024-11-15'),  -- Semi: Has NONE, job requires IT Diploma - MISMATCH (needs education)
-(203, 503, '2024-10-25'),  -- Mere: Has Business Accounting, job requires Business Accounting - MATCH
-(201, 504, '2024-12-01'),  -- Jone: Has Tourism cert, job requires Food Processing - MISMATCH (needs education)
-(205, 505, '2024-11-10'),  -- Sita: Has Agricultural Science, job requires Agricultural Science - MATCH
-(000, 506, '2024-12-10'),  -- Pita: Has NONE, job requires Project Management - MISMATCH (needs education)
-(207, 507, '2024-11-01'),  -- Roshni: Has Commerce Management, job requires Commerce Management - MATCH
-(201, 508, '2025-01-05'),  -- Viliame: Has Tourism cert, job requires Retail Management - MISMATCH (needs education)
-(209, 509, '2024-11-20'),  -- Laisa: Has Brewing Technology, job requires Brewing Technology - MATCH
-(000, 510, '2024-12-15'),  -- Tomasi: Has NONE, job requires Electrical Engineering - MISMATCH (needs education)
-(211, 511, '2024-10-20'),  -- Sofia: Has Marine Operations, job requires Marine Operations - MATCH
-(212, 512, '2024-11-05'),  -- Isikeli: Has Environmental Science, job requires Environmental Science - MATCH
-(201, 513, '2024-12-01'),  -- Ana: Has Tourism cert, job requires Culinary Arts - MISMATCH (needs education)
-(214, 514, '2024-11-10'),  -- Rajesh: Has Beverage Production, job requires Beverage Production - MATCH
-(215, 515, '2024-12-20'),  -- Kelera: Has Traditional Medicine, job requires Traditional Medicine - MATCH
-(216, 516, '2025-01-10'),  -- Josefa: Has Civil Engineering, job requires Civil Engineering - MATCH
-(000, 517, '2025-02-01'),  -- Priya: Has NONE, job requires Construction Management - MISMATCH (needs education)
-(218, 518, '2025-01-15'),  -- Mosese: Has Water Management, job requires Water Management - MATCH
-(201, 519, '2025-02-10'),  -- Amelia: Has Tourism cert, job requires Hotel Management - MISMATCH (needs education)
-(000, 520, '2025-01-25');  -- David: Has NONE, job requires Media Production - MISMATCH (needs education)
+(219, 501, '2024-10-30'),  
+(219, 502, '2024-11-15'),  
+(219, 503, '2024-10-25'),  
+(216, 504, '2024-12-01'),  
+(216, 505, '2024-11-10'),  
+(203, 506, '2024-12-10'),  
+(203, 507, '2024-11-01'),  
+(203, 508, '2025-01-05'),  
+(204, 509, '2024-11-20'),  
+(204, 510, '2024-12-15'),  
+(205, 511, '2024-10-20'),  
+(205, 512, '2024-11-05'),  
+(205, 513, '2024-12-01'),  
+(206, 514, '2024-11-10'),  
+(206, 515, '2024-12-20'),  
+(207, 516, '2025-01-10'),  
+(207, 517, '2025-02-01'),  
+(207, 518, '2025-01-15'),  
+(207, 519, '2025-02-10'), 
+(207, 520, '2025-01-25');  
 -- @block 
 -- Insert Data into JOB_OPENING table
 INSERT INTO JOB_OPENING (JOB_OPENING_CODE, JOB_OPENING_DESCRIPTION, JOB_OPENING_AVAILABILITY_STATUS, QUALIFICATION_CODE, COMPANY_CODE) VALUES
@@ -442,26 +441,48 @@ WHERE
 
 -- @block
 -- Query 6
--- Count successful placements by company and job opening
+-- Shortlisted candidates for current job openings
 SELECT 
-    CO.COMPANY_NAME AS Company,
+    CMP.COMPANY_NAME AS Company,
+    JO.JOB_OPENING_CODE AS Opening_Code,
     JO.JOB_OPENING_DESCRIPTION AS Job_Opening,
     Q.QUALIFICATION_DESCRIPTION AS Required_Qualification,
-    COUNT(P.CANDIDATE_CODE) AS Successful_Placements
-FROM COMPANY AS CO
-INNER JOIN JOB_OPENING AS JO 
-    ON CO.COMPANY_CODE = JO.COMPANY_CODE
-INNER JOIN QUALIFICATION AS Q 
-    ON JO.QUALIFICATION_CODE = Q.QUALIFICATION_CODE
-LEFT JOIN PLACEMENT AS P 
-    ON JO.JOB_OPENING_CODE = P.JOB_OPENING_CODE
-GROUP BY 
-    CO.COMPANY_NAME, 
-    JO.JOB_OPENING_DESCRIPTION, 
-    Q.QUALIFICATION_DESCRIPTION
-ORDER BY 
-    CO.COMPANY_NAME, 
-    JO.JOB_OPENING_DESCRIPTION;
+    CONCAT(CAND.CANDIDATE_FNAME, ' ', CAND.CANDIDATE_LNAME) AS Qualified_Candidate,
+    (
+        SELECT COUNT(*) 
+        FROM PLACEMENT AS P2 
+        WHERE P2.CANDIDATE_CODE = CAND.CANDIDATE_CODE
+    ) AS Successful_Placements
+FROM COMPANY AS CMP
+INNER JOIN JOB_OPENING AS JO ON CMP.COMPANY_CODE = JO.COMPANY_CODE
+JOIN QUALIFICATION AS Q ON JO.QUALIFICATION_CODE = Q.QUALIFICATION_CODE
+INNER JOIN EDUCATION AS E ON Q.QUALIFICATION_CODE = E.QUALIFICATION_CODE
+INNER JOIN CANDIDATE AS CAND ON E.CANDIDATE_CODE = CAND.CANDIDATE_CODE
+WHERE JO.JOB_OPENING_AVAILABILITY_STATUS = 'Open' 
+ORDER BY CMP.COMPANY_NAME ASC;
+
+-- @block
+-- Available candidates grouped by company and job opening
+-- Shows only candidates not currently placed
+
+SELECT 
+    CMP.COMPANY_NAME AS Company,
+    JO.JOB_OPENING_DESCRIPTION AS Job_Opening,
+    Q.QUALIFICATION_DESCRIPTION AS Required_Qualification,
+    GROUP_CONCAT(
+        CONCAT(CAND.CANDIDATE_FNAME, ' ', CAND.CANDIDATE_LNAME)
+        ORDER BY CAND.CANDIDATE_LNAME
+        SEPARATOR ', '
+    ) AS Available_Candidates,
+    COUNT(DISTINCT CAND.CANDIDATE_CODE) AS Total_Available
+FROM COMPANY CMP
+INNER JOIN JOB_OPENING JO ON CMP.COMPANY_CODE = JO.COMPANY_CODE
+INNER JOIN QUALIFICATION Q ON JO.QUALIFICATION_CODE = Q.QUALIFICATION_CODE
+INNER JOIN EDUCATION E ON Q.QUALIFICATION_CODE = E.QUALIFICATION_CODE
+INNER JOIN CANDIDATE CAND ON E.CANDIDATE_CODE = CAND.CANDIDATE_CODE
+WHERE JO.JOB_OPENING_AVAILABILITY_STATUS = 'Open'
+GROUP BY CMP.COMPANY_NAME, JO.JOB_OPENING_DESCRIPTION, Q.QUALIFICATION_DESCRIPTION
+ORDER BY CMP.COMPANY_NAME, JO.JOB_OPENING_DESCRIPTION;
 
 -- @block
 SET FOREIGN_KEY_CHECKS = 0;
