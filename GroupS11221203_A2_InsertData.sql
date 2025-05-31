@@ -1,4 +1,10 @@
--- Insert Data into COMPANY table
+-- Vishant Kumar (S11230430) --
+-- Anav Chand (S11221203) --
+-- Rohan Nandan (S11234883) --
+-- Zhixian Chen (S11230686) --
+
+-- Insert data into COMPANY table --
+
 INSERT INTO COMPANY (COMPANY_CODE, COMPANY_NAME) VALUES
 (101, 'Fiji Airways'),
 (102, 'Vodafone Fiji'),
@@ -21,7 +27,8 @@ INSERT INTO COMPANY (COMPANY_CODE, COMPANY_NAME) VALUES
 (119, 'Grand Pacific Hotel'),
 (120, 'Fiji Broadcasting Corporation');
 
--- Insert Data into QUALIFICATION table
+-- Insert data into QUALIFICATION table --
+
 INSERT INTO QUALIFICATION (QUALIFICATION_CODE, QUALIFICATION_DESCRIPTION) VALUES
 (000, 'None'),
 (201, 'Certificate in Tourism & Hospitality'),
@@ -45,7 +52,8 @@ INSERT INTO QUALIFICATION (QUALIFICATION_CODE, QUALIFICATION_DESCRIPTION) VALUES
 (219, 'Bachelor of Hotel Management'),
 (220, 'Certificate in Media Production');
 
--- Insert Data into COURSE table
+-- Insert data into COURSE table --
+
 INSERT INTO COURSE (COURSE_CODE, COURSE_DESCRIPTION, COURSE_FEE, QUALIFICATION_CODE) VALUES
 (301, 'Introduction to Fijian Tourism', 850.00, 201),
 (302, 'Network Fundamentals', 1200.00, 202),
@@ -68,54 +76,56 @@ INSERT INTO COURSE (COURSE_CODE, COURSE_DESCRIPTION, COURSE_FEE, QUALIFICATION_C
 (319, 'Front Office Operations', 1000.00, 219),
 (320, 'Radio Broadcasting Basics', 800.00, 220);
 
--- Insert Data into PREREQUISITE table
--- (Assuming some courses have prerequisites, adjust as needed)
+-- Insert data into PREREQUISITE table --
+
 INSERT INTO PREREQUISITE (COURSE_CODE, QUALIFICATION_CODE) VALUES
-(302, 202), -- Network Fundamentals requires IT Diploma
-(303, 203), -- Financial Accounting requires Business (Accounting) Bachelor
-(306, 206), -- Project Planning requires Project Management Certificate
-(307, 207), -- Organizational Behavior requires Commerce (Management) Bachelor
-(309, 209), -- Brewing Science requires Brewing Technology Certificate
-(310, 210), -- Electrical Circuit Analysis requires Electrical Engineering Diploma
-(301, 201), -- Introduction to Fijian Tourism requires Tourism & Hospitality Certificate
-(304, 204), -- Food Safety requires Food Processing Certificate
-(305, 205), -- Sustainable Farming requires Agricultural Science Diploma
-(308, 208), -- Retail Operations requires Retail Management Diploma
-(311, 211), -- Boat Handling requires Marine Operations Certificate
-(312, 212), -- Coastal Ecosystems requires Environmental Science Diploma
-(313, 213), -- Advanced Culinary Techniques requires Culinary Arts Bachelor
-(314, 214), -- Soft Drink Manufacturing requires Beverage Production Certificate
-(315, 215), -- Traditional Fijian Remedies requires Traditional Medicine Diploma
-(316, 216), -- Structural Design Principles requires Engineering (Civil) Bachelor
-(317, 217), -- Site Supervision requires Construction Management Certificate
-(318, 218), -- Water Treatment Systems requires Water Management Diploma
-(319, 219), -- Front Office Operations requires Hotel Management Bachelor
-(320, 220); -- Radio Broadcasting Basics requires Media Production Certificate
+(302, 202),
+(303, 203),
+(306, 206),
+(307, 207),
+(309, 209),
+(310, 210),
+(301, 201),
+(304, 204),
+(305, 205),
+(308, 208),
+(311, 211),
+(312, 212),
+(313, 213),
+(314, 214),
+(315, 215),
+(316, 216),
+(317, 217),
+(318, 218),
+(319, 219),
+(320, 220); 
 
--- Insert Data into SESSION table
+-- Insert data into SESSION table --
+
 INSERT INTO SESSION (SESSION_CODE, SESSION_START_DATE, SESSION_FEE, COURSE_CODE) VALUES
-(401, '2025-01-18', 850.00, 301),
-(402, '2025-02-04', 1200.00, 302),
-(403, '2025-01-23', 950.00, 303),
-(404, '2025-03-04', 700.00, 304),
-(405, '2025-02-13', 1100.00, 305),
-(406, '2025-03-18', 800.00, 306),
-(407, '2025-01-28', 1050.00, 307),
-(408, '2025-03-04', 900.00, 308),
-(409, '2025-02-23', 1300.00, 309),
-(410, '2025-03-08', 1150.00, 310),
-(411, '2025-03-13', 900.00, 311),
-(412, '2025-03-24', 1000.00, 312),
-(413, '2025-03-23', 1400.00, 313),
-(414, '2025-03-28', 850.00, 314),
-(415, '2025-03-08', 750.00, 315),
-(416, '2025-03-29', 1350.00, 316),
-(417, '2025-03-23', 950.00, 317),
-(418, '2025-03-27', 1100.00, 318),
-(419, '2025-03-28', 1000.00, 319),
-(420, '2025-03-31', 800.00, 320);
+(401, '2024-07-15', 850.00, 301),
+(402, '2024-08-01', 1200.00, 302),
+(403, '2024-07-20', 950.00, 303),
+(404, '2024-09-01', 700.00, 304),
+(405, '2024-08-10', 1100.00, 305),
+(406, '2024-09-15', 800.00, 306),
+(407, '2024-07-25', 1050.00, 307),
+(408, '2024-10-01', 900.00, 308),
+(409, '2024-08-20', 1300.00, 309),
+(410, '2024-09-05', 1150.00, 310),
+(411, '2024-10-10', 900.00, 311),
+(412, '2024-11-01', 1000.00, 312),
+(413, '2024-10-20', 1400.00, 313),
+(414, '2024-11-15', 850.00, 314),
+(415, '2024-10-05', 750.00, 315),
+(416, '2024-12-01', 1350.00, 316),
+(417, '2024-11-20', 950.00, 317),
+(418, '2024-12-10', 1100.00, 318),
+(419, '2024-11-25', 1000.00, 319),
+(420, '2024-12-15', 800.00, 320);
 
--- Insert Data into CANDIDATE table
+-- Insert data into CANDIDATE table --
+
 INSERT INTO CANDIDATE (CANDIDATE_CODE, CANDIDATE_FNAME, CANDIDATE_LNAME) VALUES
 (501, 'Aisha', 'Khan'),
 (502, 'Semi', 'Radradra'),
@@ -138,7 +148,8 @@ INSERT INTO CANDIDATE (CANDIDATE_CODE, CANDIDATE_FNAME, CANDIDATE_LNAME) VALUES
 (519, 'Amelia', 'Lewa'),
 (520, 'David', 'Lal');
 
--- Insert Data into ENROLLMENT table
+-- Insert data into ENROLLMENT table --
+
 INSERT INTO ENROLLMENT (SESSION_CODE, CANDIDATE_CODE, ENROLLMENT_DATE, ENROLLMENT_FEE_PAYMENT) VALUES
 (401, 501, '2025-01-05', 850.00),
 (402, 502, '2025-01-10', 0.00),
@@ -161,31 +172,32 @@ INSERT INTO ENROLLMENT (SESSION_CODE, CANDIDATE_CODE, ENROLLMENT_DATE, ENROLLMEN
 (419, 519, '2025-03-30', 1000.00),
 (420, 520, '2025-03-31', 0.00);
 
+-- Insert data into EDUCATION table --
 
--- Insert Data into EDUCATION table
 INSERT INTO EDUCATION (QUALIFICATION_CODE, CANDIDATE_CODE, EDUCATION_EARNED_DATE) VALUES
-(201, 501, '2024-10-30'),  -- Aisha: Has Tourism cert, job requires Tourism - MATCH
-(000, 502, '2024-11-15'),  -- Semi: Has NONE, job requires IT Diploma - MISMATCH (needs education)
-(203, 503, '2024-10-25'),  -- Mere: Has Business Accounting, job requires Business Accounting - MATCH
-(201, 504, '2024-12-01'),  -- Jone: Has Tourism cert, job requires Food Processing - MISMATCH (needs education)
-(205, 505, '2024-11-10'),  -- Sita: Has Agricultural Science, job requires Agricultural Science - MATCH
-(000, 506, '2024-12-10'),  -- Pita: Has NONE, job requires Project Management - MISMATCH (needs education)
-(207, 507, '2024-11-01'),  -- Roshni: Has Commerce Management, job requires Commerce Management - MATCH
-(201, 508, '2025-01-05'),  -- Viliame: Has Tourism cert, job requires Retail Management - MISMATCH (needs education)
-(209, 509, '2024-11-20'),  -- Laisa: Has Brewing Technology, job requires Brewing Technology - MATCH
-(000, 510, '2024-12-15'),  -- Tomasi: Has NONE, job requires Electrical Engineering - MISMATCH (needs education)
-(211, 511, '2024-10-20'),  -- Sofia: Has Marine Operations, job requires Marine Operations - MATCH
-(212, 512, '2024-11-05'),  -- Isikeli: Has Environmental Science, job requires Environmental Science - MATCH
-(201, 513, '2024-12-01'),  -- Ana: Has Tourism cert, job requires Culinary Arts - MISMATCH (needs education)
-(214, 514, '2024-11-10'),  -- Rajesh: Has Beverage Production, job requires Beverage Production - MATCH
-(215, 515, '2024-12-20'),  -- Kelera: Has Traditional Medicine, job requires Traditional Medicine - MATCH
-(216, 516, '2025-01-10'),  -- Josefa: Has Civil Engineering, job requires Civil Engineering - MATCH
-(000, 517, '2025-02-01'),  -- Priya: Has NONE, job requires Construction Management - MISMATCH (needs education)
-(218, 518, '2025-01-15'),  -- Mosese: Has Water Management, job requires Water Management - MATCH
-(201, 519, '2025-02-10'),  -- Amelia: Has Tourism cert, job requires Hotel Management - MISMATCH (needs education)
-(000, 520, '2025-01-25');  -- David: Has NONE, job requires Media Production - MISMATCH (needs education)
+(201, 501, '2024-10-30'),
+(000, 502, '2024-11-15'),
+(203, 503, '2024-10-25'),
+(201, 504, '2024-12-01'),
+(205, 505, '2024-11-10'),
+(000, 506, '2024-12-10'),
+(207, 507, '2024-11-01'),
+(201, 508, '2025-01-05'),
+(209, 509, '2024-11-20'),
+(000, 510, '2024-12-15'),
+(211, 511, '2024-10-20'),
+(212, 512, '2024-11-05'),
+(201, 513, '2024-12-01'),
+(214, 514, '2024-11-10'),
+(215, 515, '2024-12-20'),
+(216, 516, '2025-01-10'),
+(000, 517, '2025-02-01'),
+(218, 518, '2025-01-15'),
+(201, 519, '2025-02-10'),
+(000, 520, '2025-01-25');
 
--- Insert Data into JOB_OPENING table
+-- Insert data into JOB_OPENING table --
+
 INSERT INTO JOB_OPENING (JOB_OPENING_CODE, JOB_OPENING_DESCRIPTION, JOB_OPENING_AVAILABILITY_STATUS, QUALIFICATION_CODE, COMPANY_CODE) VALUES
 (601, 'Guest Services Officer', 'Open', 219, 101),
 (602, 'IT Support Specialist', 'Open', 216, 102),
@@ -208,48 +220,60 @@ INSERT INTO JOB_OPENING (JOB_OPENING_CODE, JOB_OPENING_DESCRIPTION, JOB_OPENING_
 (619, 'Hotel Front Desk Agent', 'Open', 219, 119),
 (620, 'Radio Content Creator', 'Open', 220, 120);
 
--- Insert Data into PLACEMENT table
+-- Insert data into PLACEMENT table --
+
 INSERT INTO PLACEMENT (PLACEMENT_CODE, PLACEMENT_DATE, PLACEMENT_HOURS_WORKED, CANDIDATE_CODE, JOB_OPENING_CODE) VALUES
 (701, '2025-01-10', 160, 501, 601),
-(702, '2025-01-15', 150, 502, 602),
-(703, '2025-01-12', 170, 503, 603),
-(704, '2025-02-01', 140, 504, 604),
-(705, '2025-01-20', 165, 505, 605),
-(706, '2025-02-05', 155, 506, 606),
-(707, '2025-01-22', 175, 507, 607),
-(708, '2025-02-10', 145, 508, 608),
-(709, '2025-01-25', 180, 509, 609),
-(710, '2025-02-12', 160, 510, 610),
-(711, '2025-03-01', 150, 511, 611),
-(712, '2025-03-05', 160, 512, 612),
-(713, '2025-03-10', 145, 513, 613),
-(714, '2025-03-15', 155, 514, 614),
-(715, '2025-03-20', 165, 515, 615),
-(716, '2025-03-25', 170, 516, 616),
-(717, '2025-04-01', 140, 517, 617),
-(718, '2025-04-05', 150, 518, 618),
-(719, '2025-04-10', 160, 519, 619),
-(720, '2025-04-15', 170, 520, 620);
+(702, '2025-01-12', 150, 502, 601),
+(703, '2025-01-15', 155, 503, 601),
+(704, '2025-01-20', 165, 504, 602),
+(705, '2025-01-22', 170, 505, 602),
+(706, '2025-02-01', 140, 506, 603),
+(707, '2025-02-03', 145, 507, 603),
+(708, '2025-02-05', 150, 508, 603),
+(709, '2025-02-10', 160, 509, 604),
+(710, '2025-02-12', 155, 510, 604),
+(711, '2025-02-15', 165, 511, 605),
+(712, '2025-02-18', 170, 512, 605),
+(713, '2025-02-20', 160, 513, 605),
+(714, '2025-03-01', 150, 514, 606),
+(715, '2025-03-03', 155, 515, 606),
+(716, '2025-03-05', 165, 516, 607),
+(717, '2025-03-07', 170, 517, 607),
+(718, '2025-03-10', 160, 518, 607),
+(719, '2025-03-12', 155, 519, 608),
+(720, '2025-03-15', 150, 520, 608),
+(721, '2025-03-20', 165, 501, 609),
+(722, '2025-03-22', 170, 502, 610),
+(723, '2025-03-25', 160, 503, 611),
+(724, '2025-03-28', 155, 504, 612),  
+(725, '2025-03-30', 150, 505, 613);
 
--- Insert Data into JOB_HISTORY table
+-- Insert data into JOB_HISTORY table --
+
 INSERT INTO JOB_HISTORY (JOB_HISTORY_CODE, PLACEMENT_CODE, CANDIDATE_CODE) VALUES
-(801, 701, 501),
-(802, 702, 502),
-(803, 703, 503),
-(804, 704, 504),
+(801, 701, 501), 
+(802, 702, 502), 
+(803, 703, 503), 
+(804, 704, 504), 
 (805, 705, 505),
-(806, 706, 506),
-(807, 707, 507),
-(808, 708, 508),
-(809, 709, 509),
+(806, 706, 506), 
+(807, 707, 507), 
+(808, 708, 508), 
+(809, 709, 509), 
 (810, 710, 510),
-(811, 711, 511),
-(812, 712, 512),
-(813, 713, 513),
-(814, 714, 514),
+(811, 711, 511), 
+(812, 712, 512), 
+(813, 713, 513), 
+(814, 714, 514), 
 (815, 715, 515),
-(816, 716, 516),
-(817, 717, 517),
-(818, 718, 518),
-(819, 719, 519),
-(820, 720, 520);
+(816, 716, 516), 
+(817, 717, 517), 
+(818, 718, 518), 
+(819, 719, 519), 
+(820, 720, 520),
+(821, 721, 501), 
+(822, 722, 502), 
+(823, 723, 503), 
+(824, 724, 504), 
+(825, 725, 505);
