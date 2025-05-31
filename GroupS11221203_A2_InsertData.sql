@@ -197,27 +197,27 @@ INSERT INTO EDUCATION (QUALIFICATION_CODE, CANDIDATE_CODE, EDUCATION_EARNED_DATE
 
 -- Insert data into JOB_OPENING table --
 
-INSERT INTO JOB_OPENING (JOB_OPENING_CODE, JOB_OPENING_DESCRIPTION, JOB_OPENING_AVAILABILITY_STATUS, QUALIFICATION_CODE, COMPANY_CODE) VALUES
-(601, 'Guest Services Officer', 'Open', 219, 101),
-(602, 'IT Support Specialist', 'Open', 216, 102),
-(603, 'Junior Accountant', 'Open', 203, 103),
-(604, 'Food Production Assistant', 'Open', 204, 104),
-(605, 'Agricultural Technician', 'Open', 205, 105),
-(606, 'Resort Project Coordinator', 'Open', 206, 106),
-(607, 'Retail Store Manager', 'Open', 207, 107),
-(608, 'Sales Associate', 'Open', 207, 108),
-(609, 'Brewery Assistant', 'Open', 209, 109),
-(610, 'Electrical Apprentice', 'Open', 210, 110),
-(611, 'Marina Operations Staff', 'Open', 211, 111),
-(612, 'Environmental Compliance Officer', 'Open', 212, 112),
-(613, 'Chef de Partie', 'Open', 213, 113),
-(614, 'Beverage Production Operator', 'Open', 214, 114),
-(615, 'Traditional Healer Assistant', 'Open', 215, 115),
-(616, 'Civil Engineer', 'Open', 216, 116),
-(617, 'Construction Site Supervisor', 'Open', 217, 117),
-(618, 'Water Quality Technician', 'Open', 218, 118),
-(619, 'Hotel Front Desk Agent', 'Open', 219, 119),
-(620, 'Radio Content Creator', 'Open', 220, 120);
+INSERT INTO JOB_OPENING (JOB_OPENING_CODE, JOB_OPENING_DESCRIPTION, JOB_OPENING_AVAILABILITY_STATUS, QUALIFICATION_CODE, COMPANY_CODE, JOB_OPENING_SALARY) VALUES
+(601, 'Guest Services Officer', 'Open', 219, 101, 28000.00),
+(602, 'IT Support Specialist', 'Open', 216, 102, 45000.00),
+(603, 'Junior Accountant', 'Open', 203, 103, 42000.00),
+(604, 'Food Production Assistant', 'Open', 204, 104, 25000.00),
+(605, 'Agricultural Technician', 'Open', 205, 105, 35000.00),
+(606, 'Resort Project Coordinator', 'Open', 206, 106, 48000.00),
+(607, 'Retail Store Manager', 'Open', 207, 107, 55000.00),
+(608, 'Sales Associate', 'Open', 207, 108, 32000.00),
+(609, 'Brewery Assistant', 'Open', 209, 109, 38000.00),
+(610, 'Electrical Apprentice', 'Open', 210, 110, 40000.00),
+(611, 'Marina Operations Staff', 'Open', 211, 111, 33000.00),
+(612, 'Environmental Compliance Officer', 'Open', 212, 112, 50000.00),
+(613, 'Chef de Partie', 'Open', 213, 113, 45000.00),
+(614, 'Beverage Production Operator', 'Open', 214, 114, 35000.00),
+(615, 'Traditional Healer Assistant', 'Open', 215, 115, 30000.00),
+(616, 'Civil Engineer', 'Open', 216, 116, 65000.00),
+(617, 'Construction Site Supervisor', 'Open', 217, 117, 58000.00),
+(618, 'Water Quality Technician', 'Open', 218, 118, 43000.00),
+(619, 'Hotel Front Desk Agent', 'Open', 219, 119, 30000.00),
+(620, 'Radio Content Creator', 'Open', 220, 120, 36000.00);
 
 -- Insert data into PLACEMENT table --
 
