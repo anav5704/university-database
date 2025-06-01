@@ -1,4 +1,8 @@
--- @block
+-- Vishant Kumar (S11230430) --
+-- Anav Chand (S11221203) --
+-- Rohan Nandan (S11234883) --
+-- Zhixian Chen (S11230686) --
+
 -- Insert data into COMPANY table --
 
 INSERT INTO COMPANY (COMPANY_CODE, COMPANY_NAME) VALUES
