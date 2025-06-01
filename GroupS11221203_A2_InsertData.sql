@@ -1,8 +1,4 @@
--- Vishant Kumar (S11230430) --
--- Anav Chand (S11221203) --
--- Rohan Nandan (S11234883) --
--- Zhixian Chen (S11230686) --
-
+-- @block
 -- Insert data into COMPANY table --
 
 INSERT INTO COMPANY (COMPANY_CODE, COMPANY_NAME) VALUES
@@ -25,7 +21,10 @@ INSERT INTO COMPANY (COMPANY_CODE, COMPANY_NAME) VALUES
 (117, 'Pacific Building Solutions'),
 (118, 'Fiji Water'),
 (119, 'Grand Pacific Hotel'),
-(120, 'Fiji Broadcasting Corporation');
+(120, 'Fiji Broadcasting Corporation'),
+(121, 'Fiji National University'),
+(122, 'Pacific Energy Ltd'),
+(123, 'Island Fresh Produce');
 
 -- Insert data into QUALIFICATION table --
 
@@ -73,7 +72,17 @@ INSERT INTO COURSE (COURSE_CODE, COURSE_DESCRIPTION, COURSE_FEE, QUALIFICATION_C
 (317, 'Site Supervision', 950.00, 217),
 (318, 'Water Treatment Systems', 1100.00, 218),
 (319, 'Front Office Operations', 1000.00, 219),
-(320, 'Radio Broadcasting Basics', 800.00, 220);
+(320, 'Radio Broadcasting Basics', 800.00, 220),
+(321, 'Advanced Tourism Marketing', 950.00, 201),
+(322, 'Customer Service Excellence', 750.00, 201),
+(323, 'Database Management Systems', 1100.00, 202),
+(324, 'Web Development Basics', 900.00, 202),
+(325, 'Advanced Financial Reporting', 1200.00, 203),
+(326, 'Tax Preparation Fundamentals', 800.00, 203),
+(327, 'Food Quality Control', 650.00, 204),
+(328, 'Industrial Kitchen Operations', 850.00, 204),
+(329, 'Leadership and Team Management', 1150.00, 207),
+(330, 'Strategic Planning', 1000.00, 207);
 
 -- Insert data into PREREQUISITE table --
 
@@ -121,7 +130,17 @@ INSERT INTO SESSION (SESSION_CODE, SESSION_START_DATE, SESSION_FEE, COURSE_CODE)
 (417, '2024-11-20', 950.00, 317),
 (418, '2024-12-10', 1100.00, 318),
 (419, '2024-11-25', 1000.00, 319),
-(420, '2024-12-15', 800.00, 320);
+(420, '2024-12-15', 800.00, 320),
+(421, '2024-08-05', 950.00, 321),
+(422, '2024-08-15', 750.00, 322),
+(423, '2024-09-10', 1100.00, 323),
+(424, '2024-09-20', 900.00, 324),
+(425, '2024-08-25', 1200.00, 325),
+(426, '2024-09-30', 800.00, 326),
+(427, '2024-10-15', 650.00, 327),
+(428, '2024-10-25', 850.00, 328),
+(429, '2024-11-10', 1150.00, 329),
+(430, '2024-11-30', 1000.00, 330);
 
 -- Insert data into CANDIDATE table --
 
@@ -145,7 +164,11 @@ INSERT INTO CANDIDATE (CANDIDATE_CODE, CANDIDATE_FNAME, CANDIDATE_LNAME) VALUES
 (517, 'Priya', 'Singh'),
 (518, 'Mosese', 'Nasilasila'),
 (519, 'Amelia', 'Lewa'),
-(520, 'David', 'Lal');
+(520, 'David', 'Lal'),
+(521, 'Maria', 'Santos'),
+(522, 'Tevita', 'Ratunabuabua'),
+(523, 'Salote', 'Vuki'),
+(524, 'Ravi', 'Patel');
 
 -- Insert data into ENROLLMENT table --
 
@@ -193,7 +216,11 @@ INSERT INTO EDUCATION (QUALIFICATION_CODE, CANDIDATE_CODE, EDUCATION_EARNED_DATE
 (207, 517, '2025-02-01'),  
 (207, 518, '2025-01-15'),  
 (207, 519, '2025-02-10'), 
-(207, 520, '2025-01-25');  
+(207, 520, '2025-01-25'),
+(220, 521, '2024-12-01'), 
+(202, 522, '2024-11-15'),  
+(208, 523, '2024-10-20'),  
+(201, 524, '2024-09-10');  
 
 -- Insert data into JOB_OPENING table --
 
@@ -217,7 +244,32 @@ INSERT INTO JOB_OPENING (JOB_OPENING_CODE, JOB_OPENING_DESCRIPTION, JOB_OPENING_
 (617, 'Construction Site Supervisor', 'Open', 217, 117, 58000.00),
 (618, 'Water Quality Technician', 'Open', 218, 118, 43000.00),
 (619, 'Hotel Front Desk Agent', 'Open', 219, 119, 30000.00),
-(620, 'Radio Content Creator', 'Open', 220, 120, 36000.00);
+(620, 'Radio Content Creator', 'Open', 220, 120, 36000.00),
+(621, 'Senior Guest Services Manager', 'Open', 219, 101, 45000.00), 
+(622, 'VIP Lounge Supervisor', 'Open', 219, 101, 52000.00), 
+(623, 'Senior IT Specialist', 'Open', 216, 102, 75000.00), 
+(624, 'Network Infrastructure Engineer', 'Open', 216, 102, 85000.00), 
+(625, 'Senior Accountant', 'Open', 203, 103, 65000.00),  
+(626, 'Financial Controller', 'Open', 203, 103, 78000.00), 
+(627, 'Food Safety Manager', 'Open', 204, 104, 55000.00),  
+(628, 'Production Supervisor', 'Open', 204, 104, 48000.00),  
+(629, 'Agricultural Research Lead', 'Open', 205, 105, 65000.00), 
+(630, 'Farm Operations Manager', 'Open', 205, 105, 72000.00),  
+(631, 'Hotel General Manager', 'Open', 219, 119, 85000.00), 
+(632, 'Resort Operations Director', 'Open', 219, 106, 95000.00), 
+(633, 'Head Chef', 'Open', 213, 119, 75000.00), 
+(634, 'Executive Chef', 'Open', 213, 106, 88000.00),  
+(635, 'Junior IT Support', 'Open', 216, 110, 35000.00),  
+(636, 'Apprentice Engineer', 'Open', 216, 116, 28000.00), 
+(637, 'Accounting Clerk', 'Open', 203, 107, 32000.00), 
+(638, 'Bookkeeper', 'Open', 203, 108, 29000.00),  
+(639, 'Executive Project Manager', 'Open', 206, 106, 85000.00),  
+(640, 'Assistant Project Coordinator', 'Open', 206, 117, 32000.00), 
+(641, 'Senior Project Director', 'Open', 206, 116, 78000.00),
+(642, 'Research Professor', 'Open', 216, 121, 95000.00),
+(643, 'Renewable Energy Engineer', 'Open', 210, 122, 68000.00), 
+(644, 'Agricultural Extension Officer', 'Open', 205, 123, 42000.00);
+
 
 -- Insert data into PLACEMENT table --
 
@@ -246,7 +298,11 @@ INSERT INTO PLACEMENT (PLACEMENT_CODE, PLACEMENT_DATE, PLACEMENT_HOURS_WORKED, C
 (722, '2025-03-22', 170, 502, 610),
 (723, '2025-03-25', 160, 503, 611),
 (724, '2025-03-28', 155, 504, 612),  
-(725, '2025-03-30', 150, 505, 613);
+(725, '2025-03-30', 150, 505, 613),
+(726, '2025-04-01', 160, 521, 601), 
+(727, '2025-04-05', 150, 522, 602), 
+(728, '2025-04-10', 155, 523, 603),
+(729, '2025-04-15', 165, 524, 604);
 
 -- Insert data into JOB_HISTORY table --
 
